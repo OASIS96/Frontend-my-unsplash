@@ -1,0 +1,66 @@
+@import "./variables.scss";
+
+@mixin Input($width, $height, $color) {
+    border-bottom: 1px solid $color;
+    position: relative;
+    height: $height;
+    width: $width;
+
+    input {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        position: relative;
+        z-index: 1;
+        color: $color;
+
+        &:required {
+            box-shadow: none;
+        }
+
+        &:focus ~ label span,
+        &:valid ~ label span {
+            transform: translateY(-25px);
+            font-size: 0.6rem;
+            color: $primary_color;
+        }
+
+        &:focus ~ label::before,
+        &:valid ~ label::before {
+            width: 100%;
+        }
+    }
+
+    label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        span {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            font-family: $main_font;
+            color: $color;
+            transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0%;
+            height: 2px;
+            background-color: $primary_color;
+            transition: width 0.3s ease;
+        }
+    }
+}

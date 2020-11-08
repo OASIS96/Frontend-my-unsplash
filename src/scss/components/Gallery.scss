@@ -1,0 +1,89 @@
+@import "../variables.scss";
+
+.gallery_component_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 60px auto 0px auto;
+    width: 90%;
+
+    .box {
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+
+        .image_container {
+            height: 100%;
+            img {
+                object-fit: cover;
+            }
+        }
+
+        .hover_container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+
+            .btn_delete {
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                border: 2px solid red;
+                padding: 7px;
+                border-radius: 50%;
+                right: 15px;
+                top: 15px;
+                cursor: pointer;
+
+                svg {
+                    fill: red;
+                }
+            }
+
+            .description {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                color: #fafafa;
+                font-family: $main_font;
+                font-size: 0.8rem;
+            }
+        }
+
+        &:hover {
+            .hover_container {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+
+.no_image {
+    color: red;
+    font-family: $main_font;
+    text-align: center;
+    display: block;
+    margin-top: 60px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .gallery_component_container {
+        width: 85%;
+        margin: 70px auto 0px auto;
+    }
+}
+
+@media (min-width: 1000px) {
+    .gallery_component_container {
+        width: 60%;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}

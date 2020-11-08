@@ -1,0 +1,56 @@
+@import "../variables.scss";
+
+.loading_component_container {
+    background-color: #fafafa;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    max-width: 350px;
+    padding: 15px;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    .title_loading {
+        font-family: $main_font;
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    .progress_bar {
+        margin-top: 20px;
+        height: 10px;
+        background-color: #dcdde1;
+        border-radius: 5px;
+        overflow: hidden;
+
+        .inner_progress_bar {
+            width: 60%;
+            height: 100%;
+            border-radius: 5px;
+            background-color: $primary_color;
+            left: 0;
+            top: 0;
+            transform: translateX(-100%);
+            animation: Loading 1s infinite;
+        }
+    }
+}
+
+.loading_component_container.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes Loading {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(330px);
+    }
+}
